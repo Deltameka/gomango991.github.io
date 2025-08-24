@@ -25,6 +25,7 @@
   <video id="myVideo" autoplay loop playsinline>
     Your browser does not support the video tag.
   </video>
+<audio id="soundEffect" src="sound.mp3"></audio>
 </body>
 </html>
 
@@ -40,18 +41,37 @@
     { src: "bowserfart.mp4", chance: 1 }
   ];
 
-  let rand = Math.random() * 100;
-  let cumulative = 0;
-  let chosen = null;
+ const videoElement = document.getElementById("myVideo");
+  const soundElement = document.getElementById("soundEffect");
 
-  for (const vid of videos) {
-    cumulative += vid.chance;
-    if (rand <= cumulative) {
-      chosen = vid.src;
-      break;
+  function pickVideo() {
+    let rand = Math.random() * 100;
+    let cumulative = 0;
+
+    for (const vid of videos) {
+      cumulative += vid.chance;
+      if (rand <= cumulative) {
+        return vid.src;
+      }
     }
   }
 
-  const videoElement = document.getElementById("myVideo");
-  videoElement.src = chosen;
+  function roll() {
+    const chosen = pickVideo();
+    videoElement.src = chosen;
+    videoElement.play();
+  }
+
+  function reroll() {
+    const chosen = pickVideo();
+    videoElement.src = chosen;
+    videoElement.play();
+    soundElement.currentTime = 0; 
+    soundElement.play(); 
+  }
+
+  roll();
+
+  document.addEventListener("click", reroll);
+  document.addEventListener("touchstart", reroll); 
 </script>
