@@ -22,8 +22,18 @@
   </style>
 </head>
 <body>
-  <video src="mariotomato.mp4" autoplay loop playsinline>
+  <video id="myVideo" autoplay loop playsinline>
     Your browser does not support the video tag.
   </video>
 </body>
 </html>
+
+
+<script>
+  const rand = Math.random();
+
+  const videoSrc = rand < 0.9 ? "mariotomato.mp4" : "roaringmario.mp4";
+
+  const videoElement = document.getElementById("myVideo");
+  videoElement.src = videoSrc;
+</script>
