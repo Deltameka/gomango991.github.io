@@ -8,16 +8,16 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden; /* no scrollbars */
+      overflow: hidden;
       background: black;
     }
     video {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;   /* always match viewport width */
-      height: 100vh;  /* always match viewport height */
-      object-fit: fill; /* stretch exactly, no cropping */
+      width: 100vw;
+      height: 100vh;
+      object-fit: fill; 
     }
   </style>
 </head>
@@ -30,10 +30,28 @@
 
 
 <script>
-  const rand = Math.random();
+  const videos = [
+    { src: "mariotomato.mp4", chance: 40 },
+    { src: "roaringmario.mp4", chance: 10 },
+    { src: "peachyluigi.mp4", chance: 12.25 },
+    { src: "mangowario.mp4", chance: 12.25 },
+    { src: "kiwiwaluigi.mp4", chance: 12.25 },
+    { src: "bananabowserana.mp4", chance: 12.25 },
+    { src: "bowserfart.mp4", chance: 1 }
+  ];
 
-  const videoSrc = rand < 0.9 ? "mariotomato.mp4" : "roaringmario.mp4";
+  let rand = Math.random() * 100;
+  let cumulative = 0;
+  let chosen = null;
+
+  for (const vid of videos) {
+    cumulative += vid.chance;
+    if (rand <= cumulative) {
+      chosen = vid.src;
+      break;
+    }
+  }
 
   const videoElement = document.getElementById("myVideo");
-  videoElement.src = videoSrc;
+  videoElement.src = chosen;
 </script>
