@@ -19,6 +19,20 @@
       height: 100vh;
       object-fit: fill; 
     }
+     #count {
+  font-family: "MyFont", sans-serif;
+  font-size: 5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+@font-face {
+  font-family: "MyFont";
+  src: url("font.otf") format("opentype");
+}
   </style>
 </head>
 <body>
@@ -26,6 +40,7 @@
     Your browser does not support the video tag.
   </video>
 <audio id="soundEffect" src="sound.mp3"></audio>
+<div id="count"></div>
 </body>
 </html>
 
@@ -42,7 +57,8 @@
   ];
 
  const videoElement = document.getElementById("myVideo");
-  const soundElement = document.getElementById("soundEffect");
+ const soundElement = document.getElementById("soundEffect");
+ var destroyed = false;
 
   function pickVideo() {
     let rand = Math.random() * 100;
@@ -63,14 +79,37 @@
   }
 
   function reroll() {
+    if (!destroyed){
     const chosen = pickVideo();
     videoElement.src = chosen;
     videoElement.play();
     soundElement.currentTime = 0; 
     soundElement.play(); 
+    if (Math.random() * 50 > 44){
+    videoElement.parentNode.removeChild(videoElement);
+    destroyed = true;
+    const timer = setInterval(update, 250);
+    return;
+    }}
   }
+const TARGET_EPOCH_SECONDS = 1756623600;
+const TARGET_MS = TARGET_EPOCH_SECONDS * 1000;
+const el = document.getElementById('count');
+
+
+function update() {
+    const now = Date.now();
+    const remainingMs = TARGET_MS - now;
+    const remainingSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
+    el.textContent = String(remainingSeconds);
+    if (remainingMs <= 0) {
+        clearInterval(timer);
+    }
+}
 
   roll();
 
   document.addEventListener("click", reroll);
+
+  
 </script>
