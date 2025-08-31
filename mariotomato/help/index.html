@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen Video Loop</title>
+  <title>Help</title>
+  <meta property="og:title" content="Help.">
+  <meta property="og:description" content="Before it's too late.">
+  <meta property="og:image" content="https://c8.alamy.com/comp/D14E15/tomato-D14E15.jpg">
+  <meta property="og:type" content="website">
   <style>
     html, body {
       margin: 0;
@@ -47,7 +51,8 @@
 
 <script>
   const videos = [
-    { src: "mariotomato.mp4", chance: 40 },
+    { src: "mariotomato.mp4", chance: 10 },
+    { src: "67.mp4", chance: 30 },
     { src: "roaringmario.mp4", chance: 10 },
     { src: "peachyluigi.mp4", chance: 12.25 },
     { src: "mangowario.mp4", chance: 12.25 },
@@ -84,31 +89,11 @@
     videoElement.src = chosen;
     videoElement.play();
     soundElement.currentTime = 0; 
-    soundElement.play(); 
-    if (Math.random() * 50 > 49){
-    videoElement.parentNode.removeChild(videoElement);
-    destroyed = true;
-    const timer = setInterval(update, 250);
-    return;
-    }}
+    soundElement.play();}
   }
 const TARGET_EPOCH_SECONDS = 1756623600;
 const TARGET_MS = TARGET_EPOCH_SECONDS * 1000;
 const el = document.getElementById('count');
-
-
-function update() {
-    const now = Date.now();
-    const remainingMs = TARGET_MS - now;
-    const remainingSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
-    el.textContent = String(remainingSeconds);
-    if (remainingMs <= 67) {
-        el.textContent = String(67);
-    }
-    if (remainingMs <= 0) {
-        clearInterval(timer);
-    }
-}
 
   roll();
 
