@@ -35,16 +35,12 @@
 }
 @font-face {
   font-family: "MyFont";
-  src: url("font.otf") format("opentype");
+  src: url("https://gomango991.github.io/mariotomato/font.otf") format("opentype");
 }
   </style>
 </head>
 <body>
-  <video id="myVideo" autoplay loop=true playsinline>
-    Your browser does not support the video tag.
-  </video>
-<audio id="soundEffect" src="sound.mp3"></audio>
-<div id="count"></div>
+<div id="count">help.</div>
 </body>
 </html>
 
@@ -94,8 +90,6 @@
 const TARGET_EPOCH_SECONDS = 1756623600;
 const TARGET_MS = TARGET_EPOCH_SECONDS * 1000;
 const el = document.getElementById('count');
-
-  roll();
 
   document.addEventListener("click", reroll);
 
