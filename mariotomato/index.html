@@ -36,10 +36,6 @@
   </style>
 </head>
 <body>
-  <video id="myVideo" autoplay loop=true playsinline>
-    Your browser does not support the video tag.
-  </video>
-<audio id="soundEffect" src="sound.mp3"></audio>
 <div id="count"></div>
 </body>
 </html>
@@ -56,42 +52,7 @@
     { src: "bowserfart.mp4", chance: 1 }
   ];
 
- const videoElement = document.getElementById("myVideo");
- const soundElement = document.getElementById("soundEffect");
- var destroyed = false;
 
-  function pickVideo() {
-    let rand = Math.random() * 100;
-    let cumulative = 0;
-
-    for (const vid of videos) {
-      cumulative += vid.chance;
-      if (rand <= cumulative) {
-        return vid.src;
-      }
-    }
-  }
-
-  function roll() {
-    const chosen = pickVideo();
-    videoElement.src = chosen;
-    videoElement.play();
-  }
-
-  function reroll() {
-    if (!destroyed){
-    const chosen = pickVideo();
-    videoElement.src = chosen;
-    videoElement.play();
-    soundElement.currentTime = 0; 
-    soundElement.play(); 
-    if (Math.random() * 50 > 49){
-    videoElement.parentNode.removeChild(videoElement);
-    destroyed = true;
-    const timer = setInterval(update, 250);
-    return;
-    }}
-  }
 const TARGET_EPOCH_SECONDS = 1756623600;
 const TARGET_MS = TARGET_EPOCH_SECONDS * 1000;
 const el = document.getElementById('count');
@@ -102,14 +63,17 @@ function update() {
     const remainingMs = TARGET_MS - now;
     const remainingSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
     el.textContent = String(remainingSeconds);
+    if (remainingSeconds <= 67) {
+        el.textContent = String(67);
+    }
     if (remainingMs <= 0) {
         clearInterval(timer);
+        document.body.insertAdjacentHTML('beforeend','<video id="myVideo" src="67.mp4" autoplay loop playsinline style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999999;object-fit:cover;pointer-events:none"></video>');
+
     }
 }
 
-  roll();
-
-  document.addEventListener("click", reroll);
+const timer = setInterval(update, 250);
 
   
 </script>
