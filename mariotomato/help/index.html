@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen Video Loop</title>
+  <title>Help</title>
+  <meta property="og:title" content="Help.">
+  <meta property="og:description" content="Before it's too late.">
+  <meta property="og:image" content="https://c8.alamy.com/comp/D14E15/tomato-D14E15.jpg">
+  <meta property="og:type" content="website">
   <style>
     html, body {
       margin: 0;
@@ -31,16 +35,12 @@
 }
 @font-face {
   font-family: "MyFont";
-  src: url("font.otf") format("opentype");
+  src: url("https://gomango991.github.io/mariotomato/font.otf") format("opentype");
 }
   </style>
 </head>
 <body>
-  <video id="myVideo" autoplay loop=true playsinline>
-    Your browser does not support the video tag.
-  </video>
-<audio id="soundEffect" src="sound.mp3"></audio>
-<div id="count"></div>
+<div id="count">help.</div>
 </body>
 </html>
 
@@ -50,21 +50,21 @@
     { src: "mariotomato.mp4", chance: 10 },
     { src: "67.mp4", chance: 30 },
     { src: "roaringmario.mp4", chance: 10 },
-    { src: "peachyluigi.mp4", chance: 9 },
-    { src: "mangowario.mp4", chance: 9 },
-    { src: "kiwiwaluigi.mp4", chance: 9 },
-    { src: "bananabowserana.mp4", chance: 9 },
-    { src: "bowserfart.mp4", chance: 3 },
-    { src: "takealook.mp4", chance: 1 },
-    { src: "yoshibut.mp4", chance: 1 },
-    { src: "bananakart.mp4", chance: 1 },
+    { src: "peachyluigi.mp4", chance: 12.25 },
+    { src: "mangowario.mp4", chance: 12.25 },
+    { src: "kiwiwaluigi.mp4", chance: 12.25 },
+    { src: "bananabowserana.mp4", chance: 12.25 },
+    { src: "bowserfart.mp4", chance: 1 },
+    { src: "takealook.mp4", chance: 5 },
+    { src: "yoshibut.mp4", chance: 3 },
+    { src: "bananakart.mp4", chance: 5 },
     { src: "notcreepy.mp4", chance: 1 },
-    { src: "sm64online.mp4", chance: 1 },
-    { src: "dance.mp4", chance: 1 },
-    { src: "heyremix.mp4", chance: 1 },
-    { src: "hey.mp4", chance: 1 },
-    { src: "rear.mp4", chance: 1 },
-    { src: "ohno.mp4", chance: 1 },
+    { src: "sm64online.mp4", chance: 2 },
+    { src: "dance.mp4", chance: 5 },
+    { src: "heyremix.mp4", chance: 2 },
+    { src: "hey.mp4", chance: 5 },
+    { src: "rear.mp4", chance: 2 },
+    { src: "ohno.mp4", chance: 2 },
     { src: "aesthetic.mp4", chance: 1 }
   ];
 
@@ -101,8 +101,6 @@
 const TARGET_EPOCH_SECONDS = 1756623600;
 const TARGET_MS = TARGET_EPOCH_SECONDS * 1000;
 const el = document.getElementById('count');
-
-  roll();
 
   document.addEventListener("click", reroll);
 
